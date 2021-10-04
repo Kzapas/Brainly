@@ -1,26 +1,19 @@
 import os
 from flask import Flask, request, jsonify
-from rq import Queue
-from worker import conn
-from utils import scrapeAnswer
-import json
-from time import sleep
+from brscr import brainly
+from unidecode import unidecode
 
 app = Flask(__name__)
-q = Queue(connection=conn)
-
-def get_status(job):
-    return 'Your API request failed for some reason :(' if job.is_failed else 'your API is pending, please wait' if job.result == None else job.result
 
 @app.route("/")
 def handle_job():
-    qq = request.args.get('q')
+    qq = request.args.get('question')
     if qq:
-        job = q.enqueue(scrapeAnswer, qq)
-        while job.result == None:
-            sleep(0.1)
-        else:
-            output = get_status(job)
+        scrap=brainly(qq, 1)
+        for i in scrap:
+            qtxt = unidecode(i.question.content)
+            for answer in i.answers:
+                return jsonify({qtxt : unidecode(answer.content)})
     else:
         return "Cannot GET"
     return output

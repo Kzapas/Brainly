@@ -1,14 +1,7 @@
 {
   "name": "Brainly API",
-  "description": "A Brainly API",
+  "description": "A Brainly API that fakes GraphQL requests to Brainly.co.id",
   "repository": "https://github.com/Kzapas/Brainly",
-  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png",
-  "keywords": ["python", "flask"],
-  "addons": [ "redistogo" ],
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "free"
-    }
-  }
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Brainly_logo_with_B.svg/1024px-Brainly_logo_with_B.svg.png",
+  "keywords": ["python"]
 }
