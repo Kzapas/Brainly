@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def handle_job():
-    qq = request.args.get('question')
+    qq = request.args.get('q')
     if qq:
         scrap=brainly(qq, 1)
         for i in scrap:
